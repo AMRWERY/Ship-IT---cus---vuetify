@@ -6,7 +6,7 @@
     <v-row>
       <v-col md="12" sm="12" xs="12">
         <v-card class="mx-auto" max-width="1300">
-          <v-img class="align-end text-white" height="400px" src="../../../public/slider02.jpg" cover />
+          <v-img class="align-end text-white" height="400px" src="../../../public/deal/slider2.jpg" cover />
         </v-card>
         <h3 class="pt-3 mb-1 text-h5">Lorem ipsum</h3>
         <p class="text-body-1 pt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -31,7 +31,7 @@
     <v-row>
       <v-col md="12" sm="12" xs="12">
         <v-card class="mx-auto" max-width="1300">
-          <v-img class="align-end text-white" height="400px" src="../../../public/slider03.jpg" cover />
+          <v-img class="align-end text-white" height="400px" src="../../../public/deal/slider3.jpg" cover />
         </v-card>
         <h3 class="pt-3 mb-1 text-h5">Lorem ipsum</h3>
         <p class="text-body-1 pt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

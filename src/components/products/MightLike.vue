@@ -6,7 +6,7 @@
       <v-hover v-slot="{ isHovering, props }" open-delay="200">
         <v-card :elevation="isHovering ? 16 : 2" :class="{ 'on-hover': isHovering }" class="mx-auto" height="350"
           max-width="350" v-bind="props">
-          <v-img src="../../../public/deal01.jpg" class="text-white align-end text-left" height="200px" cover>
+          <v-img src="public/deal/deal01.jpg" class="text-white align-end text-left" height="200px" cover>
             <v-card-title>Bags & Purses</v-card-title>
           </v-img>
           <v-card-text class="text-center">
@@ -25,7 +25,7 @@
       <v-hover v-slot="{ isHovering, props }" open-delay="200">
         <v-card :elevation="isHovering ? 16 : 2" :class="{ 'on-hover': isHovering }" class="mx-auto" height="350"
           max-width="350" v-bind="props">
-          <v-img src="../../../public/deal02.jpg" class="text-white align-end text-left" height="200px" cover>
+          <v-img src="public/deal/deal02.jpg" class="text-white align-end text-left" height="200px" cover>
             <v-card-title>T-Shirt</v-card-title>
           </v-img>
           <v-card-text class="text-center">
@@ -44,7 +44,7 @@
       <v-hover v-slot="{ isHovering, props }" open-delay="200">
         <v-card :elevation="isHovering ? 16 : 2" :class="{ 'on-hover': isHovering }" class="mx-auto" height="350"
           max-width="350" v-bind="props">
-          <v-img src="../../../public/deal03.jpg" class="text-white align-end text-left" height="200px" cover>
+          <v-img src="../../public/deal/deal01.jpg" class="text-white align-end text-left" height="200px" cover>
             <v-card-title>Jeans</v-card-title>
           </v-img>
           <v-card-text class="text-center">
@@ -63,7 +63,7 @@
       <v-hover v-slot="{ isHovering, props }" open-delay="200">
         <v-card :elevation="isHovering ? 16 : 2" :class="{ 'on-hover': isHovering }" class="mx-auto" height="350"
           max-width="350" v-bind="props">
-          <v-img src="../../../public/shop/05.jpg" class="text-white align-end text-left" height="200px" cover>
+          <v-img src="../../public/deal/deal04.jpg" class="text-white align-end text-left" height="200px" cover>
             <v-card-title>Shirts</v-card-title>
           </v-img>
           <v-card-text class="text-center">
@@ -82,7 +82,7 @@
       <v-hover v-slot="{ isHovering, props }" open-delay="200">
         <v-card :elevation="isHovering ? 16 : 2" :class="{ 'on-hover': isHovering }" class="mx-auto" height="350"
           max-width="350" v-bind="props">
-          <v-img src="../../../public/deal04.jpg" class="text-white align-end text-left" height="200px" cover>
+          <v-img src="../../public/deal/deal04.jpg" class="text-white align-end text-left" height="200px" cover>
             <v-card-title>Shoes</v-card-title>
           </v-img>
           <v-card-text class="text-center">
@@ -101,7 +101,7 @@
       <v-hover v-slot="{ isHovering, props }" open-delay="200">
         <v-card :elevation="isHovering ? 16 : 2" :class="{ 'on-hover': isHovering }" class="mx-auto" height="350"
           max-width="350" v-bind="props">
-          <v-img src="../../../public/shop/03.jpg" class="text-white align-end text-left" height="200px" cover>
+          <v-img src="../../public/shop/03.jpg" class="text-white align-end text-left" height="200px" cover>
             <v-card-title>Jackets</v-card-title>
           </v-img>
           <v-card-text class="text-center">

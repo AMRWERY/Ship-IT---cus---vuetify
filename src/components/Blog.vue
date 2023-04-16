@@ -8,7 +8,7 @@
     <v-row class="mx-2">
       <v-col xs="12" sm="12" md="9" lg="4">
         <v-card class="mx-auto" max-width="400">
-          <v-img class="align-end text-white" height="200" src="../../public/slider02.jpg" cover>
+          <v-img class="align-end text-white" height="200" src="../../public/deal/slider01.jpg" cover>
             <v-card-title>Top 10 Fashion of the Week</v-card-title>
           </v-img>
 
@@ -31,7 +31,7 @@
       </v-col>
       <v-col xs="12" sm="12" md="9" lg="4">
         <v-card class="mx-auto" max-width="400">
-          <v-img class="align-end text-white" height="200" src="../../public/slider03.jpg" cover>
+          <v-img class="align-end text-white" height="200" src="../../public/deal/slider3.jpg" cover>
             <v-card-title>Best brands for fashion</v-card-title>
           </v-img>
 
@@ -54,7 +54,7 @@
       </v-col>
       <v-col xs="12" sm="12" md="9" lg="4">
         <v-card class="mx-auto" max-width="400">
-          <v-img class="align-end text-white" height="200" src="../../public/slider04.jpg" cover>
+          <v-img class="align-end text-white" height="200" src="../../public/deal/slider04.jpg" cover>
             <v-card-title>Fashion Tips & Tricks</v-card-title>
           </v-img>
 

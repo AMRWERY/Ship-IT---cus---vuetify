@@ -5,13 +5,13 @@
         <v-col cols="12" lg="5" md="6" sm="12" xs="12">
           <v-card class="h-100 w-100">
             <v-carousel show-arrows="hover">
-              <v-carousel-item src="../../public/slider01.jpg" cover></v-carousel-item>
+              <v-carousel-item src="../../public/deal/slider01.jpg" cover></v-carousel-item>
 
-              <v-carousel-item src="../../public/slider02.jpg" cover></v-carousel-item>
+              <v-carousel-item src="../../../public/deal/slider2.jpg" cover></v-carousel-item>
 
-              <v-carousel-item src="../../public/slider03.jpg" cover></v-carousel-item>
+              <v-carousel-item src="../../public/deal/slider3.jpg" cover></v-carousel-item>
 
-              <v-carousel-item src="../../public/slider04.jpg" cover></v-carousel-item>
+              <v-carousel-item src="../../public/deal/slider04.jpg" cover></v-carousel-item>
             </v-carousel>
           </v-card>
         </v-col>
