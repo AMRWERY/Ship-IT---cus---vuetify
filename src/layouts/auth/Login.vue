@@ -16,7 +16,7 @@
               <v-text-field label="Password" type="password" required v-model.trim="password"></v-text-field>
             </v-col>
             <v-col>
-              <v-btn color="indigo-lighten-1" type="submit" :disabled="!formIsValid">Login</v-btn>
+              <v-btn color="indigo-lighten-1" type="submit" :disabled="!formIsValid" @click="signIn">Login</v-btn>
             </v-col>
           </form>
         </v-card>
@@ -29,7 +29,7 @@
 
 <script>
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../firebase/config'
+import { auth } from '../../firebase/config';
 
 export default {
   name: 'Login',
@@ -45,10 +45,15 @@ export default {
     signIn() {
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
-          // Signed in
-          console.log(userCredential.user)
           const user = userCredential.user;
-          // ...
+          if (Object.keys(user).length) {
+            this.$store.commit("setIsAuthenticated", true);
+            this.$router.replace('/')
+            localStorage.setItem('userCredential', JSON.stringify(userCredential))
+          } else {
+            this.$store.commit("setIsAuthenticated", false);
+            this.$router.replace('/login')
+          }
         })
         .catch((error) => {
           const errorCode = error.code;

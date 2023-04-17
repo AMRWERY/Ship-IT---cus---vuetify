@@ -44,6 +44,21 @@ const routes = [
     name: "Posts",
     component: () => import("../components/post/Posts.vue"),
   },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../components/Dashboard.vue"),
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () => import("../components/Profile.vue"),
+  },
+  {
+    path: "/wishlist",
+    name: "Wishlist",
+    component: () => import("../components/Wishlist.vue"),
+  },
 ];
 
 const router = createRouter({

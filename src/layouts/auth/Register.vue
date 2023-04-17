@@ -50,10 +50,15 @@ export default {
     signUp() {
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
-          // Signed in
-          console.log(userCredential.user)
           const user = userCredential.user;
-          // ...
+          if (Object.keys(user).length) {
+            this.$store.commit("setIsAuthenticated", true);
+            this.$router.replace('/')
+            localStorage.setItem('userCredential', JSON.stringify(userCredential))
+          } else {
+            this.$store.commit("setIsAuthenticated", false);
+            this.$router.replace('/registration')
+          }
         })
         .catch((error) => {
           const errorCode = error.code;
