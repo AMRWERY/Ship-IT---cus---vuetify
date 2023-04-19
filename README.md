@@ -47,8 +47,6 @@ See [Configuration Reference](https://vitejs.dev/config/).
 
 github repo
 
-https://github.com/AMRWERY/Ship-IT-vuetify
-
 1- dashboard => count items + total sold items + today income
 
 2- out of stock items

@@ -14,7 +14,7 @@
     <v-divider></v-divider>
 
     <div class="mt-6">
-      {{ new Date().getFullYear() }} — <strong>ShipIT</strong>
+      {{ new Date().getFullYear() }} — <strong>Ship-IT</strong>
     </div>
   </v-footer>
 </template>

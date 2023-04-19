@@ -4,6 +4,14 @@
       <v-toolbar-title><v-icon icon="mdi mdi-van-utility" start></v-icon>
         Ship-IT</v-toolbar-title>
       <v-spacer />
+
+      <!-- change theme -->
+
+      <v-btn icon @click="toggleTheme">
+        <v-icon icon="mdi mdi-weather-night">
+        </v-icon>
+      </v-btn>
+
       <v-btn icon v-if="isAuthenticated" to="/profile">
         <v-icon icon="mdi mdi-account-circle"></v-icon>
       </v-btn>
@@ -42,7 +50,7 @@
   </div>
 
   <div>
-    <v-toolbar color="white" v-if="isAuthenticated">
+    <v-toolbar v-if="isAuthenticated">
       <v-row align="center" justify="center">
         <v-col cols="12" class="py-2 d-flex align-center justify-center">
 
@@ -82,9 +90,21 @@
 <script>
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase/config';
+import { useTheme } from 'vuetify'
 
 export default {
   name: 'Toolbar',
+
+  //change theme
+
+  setup() {
+    const theme = useTheme()
+
+    return {
+      theme,
+      toggleTheme: () => theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+    }
+  },
 
   data() {
     return {
@@ -97,7 +117,7 @@ export default {
       ],
       isAuthenticated: false,
       menuItems: [
-        { title: 'Dashboard', icon: 'mdi mdi-monitor-dashboard', route: '/dashboard' },
+        { title: 'Add-Product', icon: 'mdi mdi-plus', route: '/add-product' },
         { title: 'Wishlist', icon: 'mdi mdi-list-status', route: '/wishlist' },
       ]
     }
