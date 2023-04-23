@@ -5,31 +5,48 @@
         <v-col cols="12" lg="5" md="6" sm="12" xs="12">
           <v-card class="h-100 w-100">
             <v-carousel show-arrows="hover">
-              <v-carousel-item src="../../public/deal/slider01.jpg" cover></v-carousel-item>
-
-              <v-carousel-item src="../../../public/deal/slider2.jpg" cover></v-carousel-item>
-
-              <v-carousel-item src="../../public/deal/slider3.jpg" cover></v-carousel-item>
-
-              <v-carousel-item src="../../public/deal/slider04.jpg" cover></v-carousel-item>
+              <v-carousel-item
+                v-for="image in productDetails?.imgList"
+                :key="image"
+                :src="image"
+                cover
+              ></v-carousel-item>
             </v-carousel>
           </v-card>
         </v-col>
         <v-col cols="12" lg="7" md="6" sm="12" xs="12">
-          <v-breadcrumbs :items="['Home', 'Clothing', 'T-Shirts']"></v-breadcrumbs>
+          <v-breadcrumbs
+            :items="['Home', 'Clothing', 'T-Shirts']"
+          ></v-breadcrumbs>
           <div class="pl-6">
-            <p class="display-1 mb-0">Modern Black T-Shirt</p>
+            <p class="display-1 mb-0">{{ productDetails?.title }}</p>
             <v-card-actions class="pa-0">
-              <p class="headline font-weight-light pt-3">$65.00 <del style=""
-                  class="subtitle-1 font-weight-thin">$80.00</del></p>
-              <v-spacer></v-spacer>
-              <v-rating v-model="rating" class="" background-color="warning lighten-3" color="warning" dense></v-rating>
-              <span class="body-2	font-weight-thin"> 25 REVIEWS</span>
+              <p class="headline font-weight-light pt-3">
+                ${{ productDetails?.price }}
+                <del style="" class="subtitle-1 font-weight-thin"
+                  >${{ productDetails?.originalPrice }}</del
+                >
+              </p>
+              <v-spacer />
+              <v-rating
+                v-model="rating"
+                class=""
+                background-color="warning lighten-3"
+                color="warning"
+                dense
+              ></v-rating>
+              <span class="body-2 font-weight-thin">
+                {{ productDetails?.rate }} REVIEWS</span
+              >
             </v-card-actions>
             <p class="subtitle-1 font-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Nisl tincidunt eget nullam non. Tincidunt arcu non sodales neque sodales ut etiam.
-              Lectus arcu bibendum at varius vel pharetra. Morbi tristique senectus et netus et malesuada.
+              {{ productDetails?.dec }}
+            </p>
+            <p class="text-h5 mt-5">
+              Quantity:
+              <v-chip variant="elevated">
+                {{ productDetails?.qty }}
+              </v-chip>
             </p>
             <p class="text-h5 mt-5">Size</p>
             <v-radio-group inline>
@@ -40,12 +57,19 @@
               <v-radio label="XL" value="5"></v-radio>
             </v-radio-group>
             <p class="text-h5 mt-5">Items</p>
-            <v-text-field :value="2" variant="outlined" style="width: 100px" dense></v-text-field>
-            <v-btn color="purple-lighten-3"><v-icon>mdi
-                mdi-cart-outline</v-icon> Add to
-              Cart</v-btn>
-            <v-btn color="orange-lighten-3" class="ml-4"><v-icon>mdi mdi-list-box-outline</v-icon> Add to
-              Wishlist</v-btn>
+            <v-text-field
+              v-model="chosenItems"
+              type="number"
+              variant="outlined"
+              style="width: 100px"
+              dense
+            ></v-text-field>
+            <v-btn color="purple-lighten-3" @click="addToCart"
+              ><v-icon>mdi mdi-cart-outline</v-icon> Add to Cart</v-btn
+            >
+            <v-btn color="orange-lighten-3" class="ml-4"
+              ><v-icon>mdi mdi-list-box-outline</v-icon> Add to Wishlist</v-btn
+            >
           </div>
         </v-col>
       </v-row>
@@ -82,13 +106,15 @@
 </template>
 
 <script>
-import Description from './Description.vue';
-import Materials from './Materials.vue';
-import Reviews from './Reviews.vue';
-import MightLike from './MightLike.vue'
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import Description from "./Description.vue";
+import Materials from "./Materials.vue";
+import Reviews from "./Reviews.vue";
+import MightLike from "./MightLike.vue";
 
 export default {
-  name: 'Products',
+  name: "Products",
 
   components: { Description, Materials, Reviews, MightLike },
 
@@ -96,9 +122,51 @@ export default {
     return {
       rating: 3,
       tab: null,
+      id: this.$route.params.id,
+      productDetails: null,
+      cart: [],
+      totalItems: null,
+      chosenItems: 1,
+    };
+  },
+
+  methods: {
+    async getProduct() {
+      const docSnap = await getDoc(doc(db, "products", this.id));
+      if (docSnap.exists()) {
+        console.log(docSnap.data());
+        this.productDetails = docSnap.data();
+      } else {
+        console.log("Document does not exist");
+      }
+    },
+    addToCart() {
+      let index = this.cart.indexOf(this.productDetails);
+
+      if (index != -1) {
+        this.cart[index]["totalPrice"] =
+          Number(this.cart[index].cartQty) * Number(this.cart[index].price);
+        this.cart[index].cartQty =
+          Number(this.chosenItems) + Number(this.cart[index].cartQty);
+        Number(this.cart[index]["cart"]) * Number(this.cart[index]["price"]);
+      } else {
+        this.productDetails["cartQty"] = Number(this.chosenItems);
+        this.productDetails["totalPrice"] =
+          Number(this.productDetails.cartQty) *
+          Number(this.productDetails.price);
+        this.cart.push(this.productDetails);
+      }
+      localStorage.setItem("cartData", JSON.stringify(this.cart));
+      this.$store.commit("totalItemsInCart", this.cart.length);
+    },
+  },
+
+  mounted() {
+    this.getProduct();
+
+    if (localStorage.getItem("cartData")) {
+      this.cart = JSON.parse(localStorage.getItem("cartData"));
     }
-  }
-}
+  },
+};
 </script>
-
-

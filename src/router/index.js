@@ -35,6 +35,11 @@ const routes = [
     component: () => import("../components/cart/Cart.vue"),
   },
   {
+    path: "/checkout",
+    name: "Checkout",
+    component: () => import("../components/cart/Checkout/Checkout.vue"),
+  },
+  {
     path: "/blog",
     name: "Blog",
     component: () => import("../components/Blog.vue"),
@@ -52,7 +57,7 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
-    component: () => import("../components/Profile.vue"),
+    component: () => import("../components/profile/UserProfile.vue"),
   },
   {
     path: "/wishlist",

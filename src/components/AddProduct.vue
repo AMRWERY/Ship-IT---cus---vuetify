@@ -10,13 +10,17 @@
         <v-card>
           <form @submit.prevent="addProduct">
             <v-col>
-              <v-text-field label="Title" type="text" required v-model.trim="name"></v-text-field>
+              <v-text-field label="Title" type="text" required v-model.trim="title"></v-text-field>
+            </v-col>
+            <v-col>
+              <v-text-field label="Original Price" type="number" required v-model.trim="originalPrice"></v-text-field>
             </v-col>
             <v-col>
               <v-text-field label="Price" type="number" required v-model.trim="price"></v-text-field>
             </v-col>
             <v-col>
               <v-text-field label="Image Url" type="url" required v-model.trim="img"></v-text-field>
+              <v-btn variant="plain" density="compact" color="primary" icon="mdi mdi-plus" @click="pushImg(img)"></v-btn>
             </v-col>
             <v-col>
               <img :src="img" height="300" />
@@ -25,7 +29,7 @@
               <v-text-field label="Quantity" type="number" required v-model.trim="qty"></v-text-field>
             </v-col>
             <v-col>
-              <v-select clearable label="Select" :items="['T-Shirt', 'Shoes', 'Shirts', 'Pant', 'Bags']"
+              <v-select clearable label="Select" :items="['T-Shirts', 'Shoes', 'Shirts', 'Pants', 'Bags', 'Jackets']"
                 v-model="select"></v-select>
             </v-col>
             <v-col>
@@ -47,17 +51,19 @@ export default {
 
   data() {
     return {
-      name: '',
+      title: '',
       price: '',
+      originalPrice: '',
       img: '',
       qty: '',
-      select: null
+      select: null,
+      imgList: []
     }
   },
 
   computed: {
     formIsValid() {
-      return this.name !== '' && this.price !== '' && this.img !== '' && this.qty !== '' && this.select !== null
+      return this.title !== '' && this.price !== '' && this.img !== '' && this.qty !== '' && this.select !== null
     },
   },
 
@@ -69,16 +75,21 @@ export default {
       else {
         const colRef = collection(db, 'products')
         const dataObj = {
-          name: this.name,
+          name: this.title,
           price: this.price,
-          img: this.img,
+          /* img: this.img, */
           qty: this.qty,
-          select: this.select
+          select: this.select,
+          imgList: this.imgList
         }
         const docRef = await addDoc(colRef, dataObj)
         console.log('Document was created with ID:', docRef.id)
         this.$router.push('/shop')
       }
+    },
+    pushImg(img) {
+      this.imgList.push(img);
+      console.log(this.imgList)
     }
   },
 

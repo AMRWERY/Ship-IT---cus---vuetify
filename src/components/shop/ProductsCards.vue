@@ -12,20 +12,13 @@
   <v-row class="text-center">
     <v-col cols="12" lg="3" md="6" sm="12" xs="12" v-for="pro in products" :key="pro">
       <v-hover v-slot="{ isHovering, props }">
-        <v-card class="mx-auto" color="grey-lighten-4" max-width="600" v-bind="props">
-          <v-img :aspect-ratio="16 / 9" cover height="200px" :src="pro.img">
+        <v-card class="mx-auto" max-width="600" v-bind="props">
+          <v-img :aspect-ratio="16 / 9" cover height="200px" :src="pro.imgList[0]">
             <v-expand-transition>
               <div v-if="isHovering" class="d-flex transition-fast-in-fast-out bg-blue-lighten-5 v-card--reveal"
                 style="height: 100%;">
 
-                <!-- <v-btn variant="outlined" :to="'/product/' + id">Check</v-btn> -->
-
-                <!-- <v-btn variant="outlined" :to="{ name: 'Products', params: { id: pro.id } }">Check</v-btn> -->
-
-                <router-link :to="{ name: 'Products', params: { id: pro.id } }">
-                  <v-btn variant="outlined">Check</v-btn>
-                </router-link>
-
+                <v-btn variant="outlined" :to="{ name: 'Products', params: { id: pro.id } }">Check</v-btn>
 
               </div>
             </v-expand-transition>
@@ -33,14 +26,20 @@
 
           <v-card-text class="pt-6">
             <div class="font-weight-light text-grey text-h6 mb-2">
-              {{ pro.name }}
+              <v-chip variant="elevated" color="primary">
+                {{ pro.title }}
+              </v-chip>
+
             </div>
 
             <div class="font-weight-light text-h6 mb-2">
               ${{ pro.price }}
             </div>
             <div class="font-weight-light text-h6 mb-2">
-              In Stock: {{ pro.qty }}
+              In Stock: {{ pro.qty }} Pieces
+            </div>
+            <div class="font-weight-light text-h6 mb-2">
+              Category: {{ pro.category }}
             </div>
           </v-card-text>
         </v-card>
@@ -64,109 +63,28 @@ export default {
         'Price: High to Low',
       ],
       products: [],
-      /* products: [
-        {
-          id: 1,
-          name: 'Black Tee',
-          type: 'Jackets',
-          price: '18.00',
-          src: '../../public/shop/01.jpg'
-        },
-        {
-          id: 2,
-          name: 'White Tee',
-          type: 'Polo',
-          price: '40.00',
-          src: '../../public/shop/02.jpg'
-        },
-        {
-          id: 3,
-          name: 'Zara limited...',
-          type: 'Denim',
-          price: '25.00',
-          src: '../../public/shop/03.jpg'
-        },
-        {
-          id: 4,
-          name: 'Skull Tee',
-          type: 'Jackets',
-          price: '30.00',
-          src: '../../public/shop/04.jpg'
-        },
-        {
-          id: 5,
-          name: 'Mango Winter',
-          type: 'Sweaters',
-          price: '50.00',
-          src: '../../public/shop/05.jpg'
-        },
-        {
-          id: 6,
-          name: 'Shirt',
-          type: 'Denim',
-          price: '34.00',
-          src: '../../public/shop/06.jpg'
-        },
-        {
-          id: 7,
-          name: 'Trucker Jacket',
-          type: 'Jackets',
-          price: '38.00',
-          src: '../../public/shop/07.jpg'
-        },
-        {
-          id: 8,
-          name: 'Coats',
-          type: 'Jackets',
-          price: '25.00',
-          src: '../../public/shop/08.jpg'
-        },
-        {
-          id: 9,
-          name: 'Mango Winter',
-          type: 'Sweaters',
-          price: '50.00',
-          src: '../../public/shop/09.jpg'
-        },
-        {
-          id: 10,
-          name: 'Shirt',
-          type: 'Denim',
-          price: '34.00',
-          src: '../../public/shop/010.jpg'
-        },
-        {
-          id: 11,
-          name: 'Trucker Jacket',
-          type: 'Jackets',
-          price: '38.00',
-          src: '../../public/shop/011.jpg'
-        },
-        {
-          id: 12,
-          name: 'Coats',
-          type: 'Jackets',
-          price: '25.00',
-          src: '../../public/shop/012.jpg'
-        },
-      ], */
     }
+  },
+
+  mounted() {
+    this.getData()
   },
 
   methods: {
     async getData() {
       const querySnap = await getDocs(query(collection(db, 'products')));
 
-      querySnap.forEach((doc) => {
-        this.products.push(doc.data())
+      querySnap.forEach(doc => {
+        let pro = {
+          id: doc.id,
+          ...doc.data(doc.id)
+        }
+        console.log(doc.id)
+        this.products.push(pro)
       })
+      /* console.log(this.products) */
     }
   },
-
-  created() {
-    this.getData()
-    console.log(this.data)
-  }
 }
 </script>
 
