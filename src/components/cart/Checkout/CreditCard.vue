@@ -50,15 +50,12 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-btn variant="tonal" color="purple-lighten-1" class="ma-3"
-            >Cancel</v-btn
-          >
+          <v-btn variant="tonal" class="ma-3 bg-teal-lighten-1">Cancel</v-btn>
           <v-btn
             type="submit"
             variant="tonal"
             :disabled="!formIsValid"
-            color="lime-lighten-2"
-            class="ma-3"
+            class="ma-3 bg-indigo-lighten-1"
             >Pay Now</v-btn
           >
         </form>
