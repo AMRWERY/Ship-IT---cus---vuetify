@@ -17,8 +17,7 @@
             <v-btn
               type="submit"
               variant="tonal"
-              color="purple-lighten-1"
-              class="ma-3"
+              class="ma-3 bg-purple-lighten-1"
               :disabled="!formIsValid"
               >Pay Now</v-btn
             >
