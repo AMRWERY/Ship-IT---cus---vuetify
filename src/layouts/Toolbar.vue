@@ -14,52 +14,25 @@
       </v-btn>
 
       <v-btn icon v-if="isAuthenticated" to="/profile">
-        <v-icon icon="mdi mdi-account-circle"></v-icon>
+        <v-icon icon="mdi mdi-account-circle" color="indigo-darken-1"></v-icon>
       </v-btn>
       <v-btn icon to="/cart" v-if="isAuthenticated">
         <v-badge :content="totalItems" color="orange-lighten-1">
-          <v-icon icon="mdi mdi-cart-outline"></v-icon>
+          <v-icon icon="mdi mdi-cart-outline" color="purple-lighten-1"></v-icon>
         </v-badge>
       </v-btn>
-
-      <v-menu transition="scale-transition" v-if="isAuthenticated">
-        <template v-slot:activator="{ props }">
-          <span v-bind="props" style="cursor: pointer" class="mx-5 mr-10">
-            <v-chip link>
-              <span>Hi, username</span>
-            </v-chip>
-          </span>
-        </template>
-
-        <v-list style="cursor: pointer">
-          <v-list-item-content>
-            <v-list-item-title class="text-center"
-              >Hi, username</v-list-item-title
-            >
-            <v-list-item-subtitle class="text-center ma-2"
-              ><v-chip color="green">Logged In</v-chip></v-list-item-subtitle
-            >
-          </v-list-item-content>
-          <v-divider />
-          <v-list-item
-            v-for="item in menuItems"
-            :key="item"
-            :prepend-icon="item.icon"
-            :to="item.route"
-          >
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-          <v-btn
-            rounded="lg"
-            variant="tonal"
-            color="purple-darken-4"
-            prepend-icon="mdi mdi-logout"
-            block
-            @click="logOut"
-            >Log Out</v-btn
-          >
-        </v-list>
-      </v-menu>
+      <v-btn icon to="/wishlist" v-if="isAuthenticated">
+        <v-badge :content="totalItemsInWishList" color="orange-lighten-1">
+          <v-icon icon="mdi mdi-heart-outline" color="red-lighten-1"></v-icon>
+        </v-badge>
+      </v-btn>
+      <v-btn
+        prepend-icon="mdi mdi-logout"
+        to="/cart"
+        @click="logOut"
+        v-if="isAuthenticated"
+        >Log Out</v-btn
+      >
     </v-toolbar>
   </div>
 
@@ -68,28 +41,13 @@
       <v-row align="center" justify="center">
         <v-col cols="12" class="py-2 d-flex align-center justify-center">
           <v-btn-toggle v-model="text" rounded="0" group>
-            <v-btn value="left" to="/"> Home </v-btn>
+            <v-btn value="left" to="/"> Home</v-btn>
 
-            <v-menu open-on-hover>
-              <template v-slot:activator="{ props }">
-                <v-btn v-bind="props"> Shop </v-btn>
-              </template>
+            <v-btn value="left" to="/shop">Shop</v-btn>
 
-              <v-list>
-                <v-list-item
-                  style="cursor: pointer"
-                  v-for="(item, index) in items"
-                  :key="index"
-                  to="/shop"
-                >
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+            <v-btn value="right" to="product">Product</v-btn>
 
-            <v-btn value="right" to="product"> Product </v-btn>
-
-            <v-btn value="justify" to="/blog"> Blog </v-btn>
+            <v-btn value="justify" to="/blog">Blog</v-btn>
           </v-btn-toggle>
         </v-col>
       </v-row>
@@ -101,7 +59,6 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useTheme } from "vuetify";
-import { watch } from "vue";
 
 export default {
   name: "Toolbar",
@@ -122,19 +79,9 @@ export default {
 
   data() {
     return {
-      items: [
-        { title: "T-Shirts" },
-        { title: "Jackets" },
-        { title: "Shirts" },
-        { title: "Jeans" },
-        { title: "Shoes" },
-      ],
       isAuthenticated: false,
-      menuItems: [
-        { title: "Add-Product", icon: "mdi mdi-plus", route: "/add-product" },
-        { title: "Wishlist", icon: "mdi mdi-list-status", route: "/wishlist" },
-      ],
       totalItems: 0,
+      totalItemsInWishList: 0,
     };
   },
 
@@ -145,27 +92,39 @@ export default {
     totalItemsInCart() {
       return this.$store.getters.totalItemsInCart;
     },
+    totalItemsInWishList() {
+      return this.$store.getters.totalItemsInWishList;
+    },
   },
 
   mounted() {
     if (localStorage.getItem("userCredential")) {
       this.$store.commit("setIsAuthenticated", true);
     }
+
     let cart = JSON.parse(localStorage.getItem("cartData"));
 
     if (cart) {
       this.totalItems = cart.length;
+      this.$store.commit("totalItemsInCart", cart.length);
+    }
+
+    let wishList = JSON.parse(localStorage.getItem("wishListData"));
+    if (wishList) {
+      this.totalItemsInWishList = wishList.length;
+      this.$store.commit("totalItemsInWishList", wishList.length);
     }
   },
 
   watch: {
     isAuthenticated(newVal, oldVal) {
       this.isAuthenticated = newVal;
-      /* console.log(oldVal); */
     },
     totalItemsInCart(newVal, oldVal) {
       this.totalItems = newVal;
-      /* console.log(newVal, "this new"); */
+    },
+    totalItemsInWishList(newVal, oldVal) {
+      this.totalItemsInWishList = newVal;
     },
   },
 

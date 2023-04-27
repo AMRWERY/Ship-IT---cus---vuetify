@@ -4,11 +4,11 @@
 </template>
 
 <script>
-import Toolbar from './layouts/Toolbar.vue';
+import Toolbar from "./layouts/Toolbar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
 
-  components: { Toolbar }
-}
+  components: { Toolbar },
+};
 </script>

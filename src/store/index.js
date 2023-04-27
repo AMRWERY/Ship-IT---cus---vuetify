@@ -4,7 +4,8 @@ const store = createStore({
   state() {
     return {
       isAuthenticated: false,
-      totalItems: 0,
+      totalItemsCart: 0,
+      totalWishList: 0,
     };
   },
 
@@ -13,7 +14,10 @@ const store = createStore({
       state.isAuthenticated = payload;
     },
     totalItemsInCart(state, payload) {
-      state.totalItems = payload;
+      state.totalItemsCart = payload;
+    },
+    totalItemsInWishList(state, payload) {
+      state.totalWishList = payload;
     },
   },
 
@@ -22,7 +26,10 @@ const store = createStore({
       return state.isAuthenticated;
     },
     totalItemsInCart(state) {
-      return state.totalItems;
+      return state.totalItemsCart;
+    },
+    totalItemsInWishList(state) {
+      return state.totalWishList;
     },
   },
 });

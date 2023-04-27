@@ -91,11 +91,16 @@
       </v-col>
     </v-row>
   </v-container>
+  <Footer />
 </template>
 
 <script>
+import Footer from "@/layouts/Footer.vue";
+
 export default {
   name: "Blog",
+
+  components: { Footer },
 };
 </script>
 

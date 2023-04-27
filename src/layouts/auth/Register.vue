@@ -6,25 +6,53 @@
       </v-col>
     </v-row>
     <v-row align="center" justify="center">
-      <v-col xs="12" sm="10" md="8" offset-sm="1" offset-md="2" class="flex-column justify-center align-center">
+      <v-col
+        xs="12"
+        sm="10"
+        md="8"
+        offset-sm="1"
+        offset-md="2"
+        class="flex-column justify-center align-center"
+      >
         <v-card>
           <form @submit.prevent="signUp">
             <v-col>
-              <v-text-field label="Email" type="email" required v-model.trim="email"></v-text-field>
+              <v-text-field
+                label="Email"
+                type="email"
+                required
+                v-model.trim="email"
+              ></v-text-field>
             </v-col>
             <v-col>
-              <v-text-field label="Password" type="password" required v-model.trim="password"></v-text-field>
+              <v-text-field
+                label="Password"
+                type="password"
+                required
+                v-model.trim="password"
+              ></v-text-field>
             </v-col>
             <v-col>
-              <v-text-field label="Confirm Password" type="password" required v-model.trim="confirmPassword"
-                :rules="[comparePasswords]"></v-text-field>
+              <v-text-field
+                label="Confirm Password"
+                type="password"
+                required
+                v-model.trim="confirmPassword"
+                :rules="[comparePasswords]"
+              ></v-text-field>
             </v-col>
             <v-col>
-              <v-btn color="indigo-lighten-1" type="submit" :disabled="!formIsValid">Register</v-btn>
+              <v-btn
+                color="indigo-lighten-1"
+                type="submit"
+                :disabled="!formIsValid"
+                >Register</v-btn
+              >
             </v-col>
           </form>
         </v-card>
-        <h4 class="text-center text-subtitle-1 mt-6">Already have account? <router-link to="/login">Sign In</router-link>
+        <h4 class="text-center text-subtitle-1 mt-6">
+          Already have account? <router-link to="/login">Sign In</router-link>
         </h4>
       </v-col>
     </v-row>
@@ -33,17 +61,17 @@
 
 <script>
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../firebase/config'
+import { auth } from "../../firebase/config";
 
 export default {
-  name: 'Register',
+  name: "Register",
 
   data() {
     return {
-      email: '',
-      password: '',
-      confirmPassword: ''
-    }
+      email: "",
+      password: "",
+      confirmPassword: "",
+    };
   },
 
   methods: {
@@ -53,11 +81,14 @@ export default {
           const user = userCredential.user;
           if (Object.keys(user).length) {
             this.$store.commit("setIsAuthenticated", true);
-            this.$router.replace('/')
-            localStorage.setItem('userCredential', JSON.stringify(userCredential))
+            this.$router.replace("/");
+            localStorage.setItem(
+              "userCredential",
+              JSON.stringify(userCredential)
+            );
           } else {
             this.$store.commit("setIsAuthenticated", false);
-            this.$router.replace('/registration')
+            this.$router.replace("/registration");
           }
         })
         .catch((error) => {
@@ -65,16 +96,20 @@ export default {
           const errorMessage = error.message;
           // ..
         });
-    }
+    },
   },
 
   computed: {
     formIsValid() {
-      return this.email !== '' && this.password !== '' && this.confirmPassword !== ''
+      return (
+        this.email !== "" && this.password !== "" && this.confirmPassword !== ""
+      );
     },
     comparePasswords() {
-      return this.confirmPassword !== this.password ? 'Passwords dose not match' : ''
+      return this.confirmPassword !== this.password
+        ? "Passwords dose not match"
+        : "";
     },
   },
-}
+};
 </script>

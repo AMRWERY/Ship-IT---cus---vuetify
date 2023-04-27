@@ -4,14 +4,7 @@
       <v-row>
         <v-col cols="12" lg="5" md="6" sm="12" xs="12">
           <v-card class="h-100 w-100">
-            <v-carousel show-arrows="hover">
-              <v-carousel-item
-                v-for="image in productDetails?.imgList"
-                :key="image"
-                :src="image"
-                cover
-              ></v-carousel-item>
-            </v-carousel>
+            <v-img :src="productDetails?.img" />
           </v-card>
         </v-col>
         <v-col cols="12" lg="7" md="6" sm="12" xs="12">
@@ -65,10 +58,10 @@
               dense
             ></v-text-field>
             <v-btn color="purple-lighten-3" @click="addToCart"
-              ><v-icon>mdi mdi-cart-outline</v-icon> Add to Cart</v-btn
+              ><v-icon>mdi mdi-cart-outline</v-icon>Add to Cart</v-btn
             >
-            <v-btn color="orange-lighten-3" class="ml-4"
-              ><v-icon>mdi mdi-list-box-outline</v-icon> Add to Wishlist</v-btn
+            <v-btn color="orange-lighten-3" class="ml-4" @click="addToWishList"
+              ><v-icon>mdi mdi-list-box-outline</v-icon>Add to Wishlist</v-btn
             >
           </div>
         </v-col>
@@ -102,6 +95,7 @@
         <MightLike />
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
 
@@ -112,11 +106,12 @@ import Description from "./Description.vue";
 import Materials from "./Materials.vue";
 import Reviews from "./Reviews.vue";
 import MightLike from "./MightLike.vue";
+import Footer from "@/layouts/Footer.vue";
 
 export default {
   name: "Products",
 
-  components: { Description, Materials, Reviews, MightLike },
+  components: { Description, Materials, Reviews, MightLike, Footer },
 
   data() {
     return {
@@ -127,6 +122,7 @@ export default {
       cart: [],
       totalItems: null,
       chosenItems: 1,
+      wishList: [],
     };
   },
 
@@ -134,7 +130,6 @@ export default {
     async getProduct() {
       const docSnap = await getDoc(doc(db, "products", this.id));
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         this.productDetails = docSnap.data();
       } else {
         console.log("Document does not exist");
@@ -157,7 +152,17 @@ export default {
         this.cart.push(this.productDetails);
       }
       localStorage.setItem("cartData", JSON.stringify(this.cart));
+      console.log(this.cart);
       this.$store.commit("totalItemsInCart", this.cart.length);
+    },
+    addToWishList() {
+      let index = this.wishList.indexOf(this.productDetails);
+
+      if (index == -1) {
+        this.wishList.push(this.productDetails);
+        localStorage.setItem("wishListData", JSON.stringify(this.wishList));
+        this.$store.commit("totalItemsInWishList", this.wishList.length);
+      }
     },
   },
 
@@ -166,6 +171,10 @@ export default {
 
     if (localStorage.getItem("cartData")) {
       this.cart = JSON.parse(localStorage.getItem("cartData"));
+    }
+
+    if (localStorage.getItem("wishListData")) {
+      this.wishList = JSON.parse(localStorage.getItem("wishListData"));
     }
   },
 };

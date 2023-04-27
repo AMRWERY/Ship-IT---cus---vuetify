@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1 class="text-center text-h3">SHOPPING CART</h1>
+        <h1 class="text-center text-h3">Shopping Cart</h1>
       </v-col>
     </v-row>
     <v-row>
@@ -18,47 +18,33 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="item in cart" :key="item">
               <td>
                 <v-list-item
-                  prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"
-                  title="Item 1"
-                  subtitle="Lorem Ipsum"
+                  :prepend-avatar="item.img"
+                  :title="item.title"
+                  :subtitle="item.category"
                 ></v-list-item>
               </td>
-              <td>$40.00</td>
+              <td>{{ item.price }}</td>
               <td>
                 <v-text-field
                   class="pt-10"
                   style="width: 80px"
-                  value="2"
+                  :value="item.cartQty"
                   type="number"
                   variant="outlined"
                 ></v-text-field>
               </td>
-              <td>$80.00</td>
-              <td><a>X</a></td>
-            </tr>
-            <tr>
+              <td>${{ item.price * item.cartQty }}</td>
               <td>
-                <v-list-item
-                  prepend-avatar="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-                  title="Item 1"
-                  subtitle="Lorem Ipsum"
-                ></v-list-item>
+                <v-btn
+                  icon="mdi mdi-alpha-x"
+                  color="red"
+                  flat
+                  @click="removeItem(itemId)"
+                ></v-btn>
               </td>
-              <td>$30.00</td>
-              <td>
-                <v-text-field
-                  class="pt-10"
-                  style="width: 80px"
-                  value="4"
-                  type="number"
-                  variant="outlined"
-                ></v-text-field>
-              </td>
-              <td>$120.00</td>
-              <td><a>X</a></td>
             </tr>
           </tbody>
         </v-table>
@@ -74,7 +60,9 @@
             <tbody>
               <tr>
                 <td>Order Subtotal</td>
-                <td class="text-right" style="width: 50px">$160.00</td>
+                <td class="text-right" style="width: 50px">
+                  ${{ totalAmount.total }}
+                </td>
               </tr>
               <tr>
                 <td>Shipping Charges</td>
@@ -85,8 +73,10 @@
                 <td class="text-right" style="width: 50px">$5.00</td>
               </tr>
               <tr>
-                <td>Total</td>
-                <td class="text-right" style="width: 50px"><b>$175.00</b></td>
+                <td>Total Items</td>
+                <td class="text-right" style="width: 50px">
+                  <b>{{ totalItems }}</b>
+                </td>
               </tr>
             </tbody>
           </template>
@@ -103,15 +93,62 @@
       </v-col>
     </v-row>
   </v-container>
-  <Footer class="mt-16" />
 </template>
 
 <script>
-import Footer from "./Footer.vue";
-
 export default {
   name: "Cart",
 
-  components: { Footer },
+  data() {
+    return {
+      cart: [],
+      category: "",
+      title: "",
+      img: "",
+      price: 0,
+      cartQty: 0,
+    };
+  },
+
+  computed: {
+    totalAmount() {
+      let total = 0;
+      let amounts = {};
+
+      this.cart.forEach((item) => {
+        if (!amounts[item.category]) {
+          amounts[item.category] = 0;
+        }
+        amounts[item.category] += item.price * item.cartQty;
+        total += item.price * item.cartQty;
+      });
+
+      total = total.toFixed(2);
+
+      return {
+        total,
+        amounts,
+      };
+    },
+    totalItems() {
+      return this.cart.reduce((total, item) => total + item.cartQty, 0);
+    },
+  },
+
+  methods: {
+    removeItem(itemId) {
+      const index = this.cart.findIndex((item) => item.id === itemId);
+      if (index !== -1) {
+        this.cart.splice(index, 1);
+        localStorage.setItem("cartData", JSON.stringify(this.cart));
+      }
+    },
+  },
+
+  mounted() {
+    if (localStorage.getItem("cartData")) {
+      this.cart = JSON.parse(localStorage.getItem("cartData"));
+    }
+  },
 };
 </script>

@@ -72,9 +72,7 @@
               </v-list>
             </div>
           </v-expand-transition>
-
           <v-divider />
-
           <v-card-actions>
             <v-btn @click="expand = !expand">
               {{ !expand ? "Full Report" : "Hide Report" }}
@@ -84,15 +82,17 @@
       </v-col>
     </v-row>
   </v-container>
+  <Footer />
 </template>
 
 <script>
 import Form from "./Form.vue";
+import Footer from "@/layouts/Footer.vue";
 
 export default {
   name: "Profile",
 
-  components: { Form },
+  components: { Form, Footer },
 
   data() {
     return {

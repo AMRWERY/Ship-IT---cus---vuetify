@@ -5,23 +5,21 @@
     <Lorem />
     <TodayDeals />
     <Footer />
-    <MainFooter />
   </v-app>
 </template>
 
 <script>
-import Carousel from '@/layouts/Carousel.vue';
-import Banners from '../components/Banners.vue';
-import Lorem from '../components/Lorem.vue';
-import TodayDeals from '@/components/TodayDeals.vue';
-import Footer from '../layouts/Footer.vue';
-import MainFooter from '../layouts/MainFooter.vue'
+import Carousel from "@/layouts/Carousel.vue";
+import Banners from "../components/Banners.vue";
+import Lorem from "../components/Lorem.vue";
+import TodayDeals from "@/components/TodayDeals.vue";
+import Footer from "../layouts/Footer.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
 
-  components: { Carousel, Banners, Lorem, TodayDeals, Footer, MainFooter }
-}
+  components: { Carousel, Banners, Lorem, TodayDeals, Footer },
+};
 </script>
 
 
