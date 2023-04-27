@@ -28,7 +28,7 @@
       </v-btn>
       <v-btn
         prepend-icon="mdi mdi-logout"
-        to="/cart"
+        to="/login"
         @click="logOut"
         v-if="isAuthenticated"
         >Log Out</v-btn
@@ -41,7 +41,7 @@
       <v-row align="center" justify="center">
         <v-col cols="12" class="py-2 d-flex align-center justify-center">
           <v-btn-toggle v-model="text" rounded="0" group>
-            <v-btn value="left" to="/home"> Home</v-btn>
+            <v-btn value="left" to="/home">Home</v-btn>
 
             <v-btn value="left" to="/shop">Shop</v-btn>
 
