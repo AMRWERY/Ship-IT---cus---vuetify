@@ -95,7 +95,6 @@
         <MightLike />
       </v-row>
     </v-container>
-    <Footer />
   </div>
 </template>
 
@@ -106,12 +105,11 @@ import Description from "./Description.vue";
 import Materials from "./Materials.vue";
 import Reviews from "./Reviews.vue";
 import MightLike from "./MightLike.vue";
-import Footer from "@/layouts/Footer.vue";
 
 export default {
   name: "Products",
 
-  components: { Description, Materials, Reviews, MightLike, Footer },
+  components: { Description, Materials, Reviews, MightLike },
 
   data() {
     return {

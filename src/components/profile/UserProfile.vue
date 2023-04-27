@@ -87,12 +87,11 @@
 
 <script>
 import Form from "./Form.vue";
-import Footer from "@/layouts/Footer.vue";
 
 export default {
   name: "Profile",
 
-  components: { Form, Footer },
+  components: { Form },
 
   data() {
     return {

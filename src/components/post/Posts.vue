@@ -91,17 +91,15 @@
       </v-col>
     </v-row>
   </v-container>
-  <Footer />
 </template>
 
 <script>
 import Comments from "./Comments.vue";
-import Footer from "../../layouts/Footer.vue";
 
 export default {
   name: "Post",
 
-  components: { Comments, Footer },
+  components: { Comments },
 };
 </script>
 

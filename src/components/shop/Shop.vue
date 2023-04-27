@@ -75,19 +75,17 @@
       </v-col>
     </v-row>
   </v-container>
-  <Footer />
 </template>
 
 <script>
 import ProductsCards from "./ProductsCards.vue";
-import Footer from "@/layouts/Footer.vue";
 import { getDocs, collection, query } from "firebase/firestore";
 import { db } from "@/firebase/config";
 
 export default {
   name: "Shop",
 
-  components: { ProductsCards, Footer },
+  components: { ProductsCards },
 
   data() {
     return {

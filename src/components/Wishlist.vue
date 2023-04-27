@@ -36,16 +36,11 @@
       </v-col>
     </v-row>
   </v-container>
-  <Footer class="mt-16" />
 </template>
 
 <script>
-import Footer from "../layouts/Footer.vue";
-
 export default {
   name: "Wishlist",
-
-  components: { Footer },
 
   data() {
     return {
