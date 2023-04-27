@@ -81,7 +81,7 @@ export default {
           const user = userCredential.user;
           if (Object.keys(user).length) {
             this.$store.commit("setIsAuthenticated", true);
-            this.$router.replace("/");
+            this.$router.replace("/home");
             localStorage.setItem(
               "userCredential",
               JSON.stringify(userCredential)

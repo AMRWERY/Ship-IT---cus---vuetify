@@ -1,18 +1,19 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
+import Register from "../layouts/auth/Register.vue";
 
 import Home from "@/views/Home.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Register",
+    component: Register,
   },
   {
-    path: "/registration",
-    name: "Register",
-    component: () => import("../layouts/auth/Register.vue"),
+    path: "/home",
+    name: "Home",
+    component: () => import("../views/Home.vue"),
   },
   {
     path: "/login",
