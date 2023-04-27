@@ -44,7 +44,7 @@
           </form>
         </v-card>
         <h4 class="text-center text-subtitle-1 mt-6">
-          No account yet? <router-link to="/registration">Sign Up</router-link>
+          No account yet? <router-link to="/">Sign Up</router-link>
         </h4>
       </v-col>
     </v-row>
@@ -72,7 +72,7 @@ export default {
           const user = userCredential.user;
           if (Object.keys(user).length) {
             this.$store.commit("setIsAuthenticated", true);
-            this.$router.replace("/");
+            this.$router.replace("/home");
             localStorage.setItem(
               "userCredential",
               JSON.stringify(userCredential)
