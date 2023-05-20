@@ -7,13 +7,7 @@
       >
       <v-spacer />
 
-      <!-- change theme -->
-
-      <v-btn icon @click="toggleTheme">
-        <v-icon icon="mdi mdi-weather-night"> </v-icon>
-      </v-btn>
-
-      <v-btn icon v-if="isAuthenticated" to="/profile">
+      <v-btn icon to="/profile" v-if="isAuthenticated">
         <v-icon icon="mdi mdi-account-circle" color="indigo-darken-1"></v-icon>
       </v-btn>
       <v-btn icon to="/cart" v-if="isAuthenticated">
@@ -26,13 +20,14 @@
           <v-icon icon="mdi mdi-heart-outline" color="red-lighten-1"></v-icon>
         </v-badge>
       </v-btn>
+
       <v-btn
-        prepend-icon="mdi mdi-logout"
+        icon="mdi mdi-logout"
         to="/login"
         @click="logOut"
         v-if="isAuthenticated"
-        >Log Out</v-btn
       >
+      </v-btn>
     </v-toolbar>
   </div>
 
@@ -58,24 +53,9 @@
 <script>
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { useTheme } from "vuetify";
 
 export default {
   name: "Toolbar",
-
-  //change theme
-
-  setup() {
-    const theme = useTheme();
-
-    return {
-      theme,
-      toggleTheme: () =>
-        (theme.global.name.value = theme.global.current.value.dark
-          ? "light"
-          : "dark"),
-    };
-  },
 
   data() {
     return {
@@ -98,18 +78,18 @@ export default {
   },
 
   mounted() {
-    if (localStorage.getItem("userCredential")) {
+    if (sessionStorage.getItem("userCredential")) {
       this.$store.commit("setIsAuthenticated", true);
     }
 
-    let cart = JSON.parse(localStorage.getItem("cartData"));
+    let cart = JSON.parse(sessionStorage.getItem("cartData"));
 
     if (cart) {
       this.totalItems = cart.length;
       this.$store.commit("totalItemsInCart", cart.length);
     }
 
-    let wishList = JSON.parse(localStorage.getItem("wishListData"));
+    let wishList = JSON.parse(sessionStorage.getItem("wishListData"));
     if (wishList) {
       this.totalItemsInWishList = wishList.length;
       this.$store.commit("totalItemsInWishList", wishList.length);
@@ -133,7 +113,7 @@ export default {
       return signOut(auth)
         .then(() => {
           this.$store.commit("setIsAuthenticated", false);
-          localStorage.clear();
+          sessionStorage.clear();
           this.$router.replace("/login");
         })
         .catch((error) => {

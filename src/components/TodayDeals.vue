@@ -13,6 +13,7 @@
                 class="mx-auto"
                 height="350"
                 max-width="350"
+                color="teal-lighten-5"
                 v-bind="props"
               >
                 <v-img
@@ -28,7 +29,7 @@
                   <div>Baggit, Zara, Fossil</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2" outlined> Explore </v-btn>
+                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>
@@ -41,6 +42,7 @@
                 class="mx-auto"
                 height="350"
                 max-width="350"
+                color="teal-lighten-5"
                 v-bind="props"
               >
                 <v-img
@@ -56,7 +58,7 @@
                   <div>Zara, Selected, Celio</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2" outlined> Explore </v-btn>
+                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>
@@ -69,6 +71,7 @@
                 class="mx-auto"
                 height="350"
                 max-width="350"
+                color="teal-lighten-5"
                 v-bind="props"
               >
                 <v-img
@@ -84,7 +87,7 @@
                   <div>Jack & Jones, Levis</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2" outlined> Explore </v-btn>
+                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>
@@ -97,6 +100,7 @@
                 class="mx-auto"
                 height="350"
                 max-width="350"
+                color="teal-lighten-5"
                 v-bind="props"
               >
                 <v-img
@@ -112,7 +116,7 @@
                   <div>Nike, Adidas, Puma</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2" outlined> Explore </v-btn>
+                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>

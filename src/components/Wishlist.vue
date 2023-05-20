@@ -12,7 +12,7 @@
             <tr>
               <th class="text-left">Item</th>
               <th class="text-left">Price</th>
-              <th class="text-left"></th>
+              <th class="text-left">#</th>
             </tr>
           </thead>
           <tbody>
@@ -69,15 +69,15 @@ export default {
         product["totalPrice"] = Number(product.cartQty) * Number(product.price);
         this.cart.push(product);
       }
-      localStorage.setItem("cartData", JSON.stringify(this.cart));
+      sessionStorage.setItem("cartData", JSON.stringify(this.cart));
       console.log(this.cart);
       this.$store.commit("totalItemsInCart", this.cart.length);
     },
   },
 
   mounted() {
-    if (localStorage.getItem("wishListData")) {
-      this.wishList = JSON.parse(localStorage.getItem("wishListData"));
+    if (sessionStorage.getItem("wishListData")) {
+      this.wishList = JSON.parse(sessionStorage.getItem("wishListData"));
     }
   },
 };

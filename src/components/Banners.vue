@@ -10,9 +10,9 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="400px"
           >
-            <h1 class="text-center">Top Picks</h1>
+            <h1 class="text-center text-white">Top Picks</h1>
             <div class="text-center white-text">
-              <v-btn to="/shop" class="white-text">Shop Now</v-btn>
+              <v-btn to="/shop" class="white-text" color="indigo-lighten-4">Shop Now</v-btn>
             </div>
           </v-img>
         </v-card>
@@ -26,9 +26,9 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="400px"
           >
-            <h1 class="text-center">New Arrivals</h1>
+            <h1 class="text-center text-white">New Arrivals</h1>
             <div class="text-center white-text">
-              <v-btn to="/shop" class="white-text">Shop Now</v-btn>
+              <v-btn to="/shop" class="white-text" color="indigo-lighten-4">Shop Now</v-btn>
             </div>
           </v-img>
         </v-card>

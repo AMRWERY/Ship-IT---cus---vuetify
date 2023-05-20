@@ -15,7 +15,7 @@
 
               <v-col cols="6" class="text-right">
                 <v-avatar
-                  image="https://randomuser.me/api/portraits/men/85.jpg"
+                  image="https://justfields.com/storage/projects/7M5rV059/photo_2023-05-14_16-32-00.jpg"
                   size="80"
                 ></v-avatar>
               </v-col>

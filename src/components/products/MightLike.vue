@@ -14,6 +14,7 @@
               class="mx-auto"
               height="350"
               max-width="350"
+              color="teal-lighten-5"
               v-bind="props"
             >
               <v-img
@@ -42,6 +43,7 @@
               class="mx-auto"
               height="350"
               max-width="350"
+              color="teal-lighten-5"
               v-bind="props"
             >
               <v-img
@@ -70,6 +72,7 @@
               class="mx-auto"
               height="350"
               max-width="350"
+              color="teal-lighten-5"
               v-bind="props"
             >
               <v-img
@@ -98,6 +101,7 @@
               class="mx-auto"
               height="350"
               max-width="350"
+              color="teal-lighten-5"
               v-bind="props"
             >
               <v-img
@@ -126,6 +130,7 @@
               class="mx-auto"
               height="350"
               max-width="350"
+              color="teal-lighten-5"
               v-bind="props"
             >
               <v-img
@@ -154,6 +159,7 @@
               class="mx-auto"
               height="350"
               max-width="350"
+              color="teal-lighten-5"
               v-bind="props"
             >
               <v-img

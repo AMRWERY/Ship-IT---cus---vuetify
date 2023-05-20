@@ -39,7 +39,9 @@ export default {
   },
 
   methods: {
-    submitForm() {},
+    submitForm() {
+      this.$router.push("/order-tracking");
+    },
   },
 
   computed: {

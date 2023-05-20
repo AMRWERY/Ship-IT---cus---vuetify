@@ -14,7 +14,7 @@
         offset-md="2"
         class="flex-column justify-center align-center"
       >
-        <v-card>
+        <v-card color="teal-lighten-5">
           <form @submit.prevent="signIn">
             <v-col>
               <v-text-field
@@ -47,6 +47,7 @@
           No account yet? <router-link to="/">Sign Up</router-link>
         </h4>
       </v-col>
+      <progress-circular v-if="loading" />
     </v-row>
   </v-container>
 </template>
@@ -73,7 +74,7 @@ export default {
           if (Object.keys(user).length) {
             this.$store.commit("setIsAuthenticated", true);
             this.$router.replace("/home");
-            localStorage.setItem(
+            sessionStorage.setItem(
               "userCredential",
               JSON.stringify(userCredential)
             );

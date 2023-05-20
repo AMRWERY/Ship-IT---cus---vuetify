@@ -14,7 +14,7 @@
         offset-md="2"
         class="flex-column justify-center align-center"
       >
-        <v-card>
+        <v-card color="teal-lighten-5">
           <form @submit.prevent="signUp">
             <v-col>
               <v-text-field
@@ -33,15 +33,6 @@
               ></v-text-field>
             </v-col>
             <v-col>
-              <v-text-field
-                label="Confirm Password"
-                type="password"
-                required
-                v-model.trim="confirmPassword"
-                :rules="[comparePasswords]"
-              ></v-text-field>
-            </v-col>
-            <v-col>
               <v-btn
                 color="indigo-lighten-1"
                 type="submit"
@@ -55,6 +46,7 @@
           Already have account? <router-link to="/login">Sign In</router-link>
         </h4>
       </v-col>
+      <progress-circular v-if="loading" />
     </v-row>
   </v-container>
 </template>
@@ -70,7 +62,6 @@ export default {
     return {
       email: "",
       password: "",
-      confirmPassword: "",
     };
   },
 
@@ -82,7 +73,7 @@ export default {
           if (Object.keys(user).length) {
             this.$store.commit("setIsAuthenticated", true);
             this.$router.replace("/home");
-            localStorage.setItem(
+            sessionStorage.setItem(
               "userCredential",
               JSON.stringify(userCredential)
             );
@@ -94,21 +85,13 @@ export default {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // ..
         });
     },
   },
 
   computed: {
     formIsValid() {
-      return (
-        this.email !== "" && this.password !== "" && this.confirmPassword !== ""
-      );
-    },
-    comparePasswords() {
-      return this.confirmPassword !== this.password
-        ? "Passwords dose not match"
-        : "";
+      return this.email !== "" && this.password !== "";
     },
   },
 };

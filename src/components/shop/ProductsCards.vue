@@ -13,7 +13,7 @@
       :key="pro"
     >
       <v-hover v-slot="{ isHovering, props }">
-        <v-card class="mx-auto" max-width="600" v-bind="props">
+        <v-card class="mx-auto" max-width="600" color="teal-lighten-5" v-bind="props">
           <v-img :aspect-ratio="16 / 9" cover height="200px" :src="pro.img">
             <v-expand-transition>
               <div
@@ -39,10 +39,10 @@
 
             <div class="font-weight-light text-h6 mb-2">${{ pro.price }}</div>
             <div class="font-weight-light text-h6 mb-2">
-              In Stock: {{ pro.qty }} Pieces
+              <strong>In Stock:</strong> {{ pro.qty }} Pieces
             </div>
             <div class="font-weight-light text-h6 mb-2">
-              Category: {{ pro.category }}
+              <strong>Category:</strong> {{ pro.category }}
             </div>
           </v-card-text>
         </v-card>

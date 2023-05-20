@@ -12,18 +12,17 @@
             :items="['Home', 'Clothing', 'T-Shirts']"
           ></v-breadcrumbs>
           <div class="pl-6">
-            <p class="display-1 mb-0">{{ productDetails?.title }}</p>
+            <p class="display-1 mb-0 text-h5">{{ productDetails?.title }}</p>
             <v-card-actions class="pa-0">
               <p class="headline font-weight-light pt-3">
                 ${{ productDetails?.price }}
                 <del style="" class="subtitle-1 font-weight-thin"
-                  >${{ productDetails?.originalPrice }}</del
+                  ><strong>${{ productDetails?.originalPrice }}</strong></del
                 >
               </p>
               <v-spacer />
               <v-rating
                 v-model="rating"
-                class=""
                 background-color="warning lighten-3"
                 color="warning"
                 dense
@@ -37,7 +36,7 @@
             </p>
             <p class="text-h5 mt-5">
               Quantity:
-              <v-chip variant="elevated">
+              <v-chip variant="elevated" color="red-lighten-4" class="text-white">
                 {{ productDetails?.qty }}
               </v-chip>
             </p>
@@ -61,8 +60,9 @@
               ><v-icon>mdi mdi-cart-outline</v-icon>Add to Cart</v-btn
             >
             <v-btn color="orange-lighten-3" class="ml-4" @click="addToWishList"
-              ><v-icon>mdi mdi-list-box-outline</v-icon>Add to Wishlist</v-btn
+              ><v-icon>"mdi mdi-heart-outline</v-icon>Add to Wishlist</v-btn
             >
+
           </div>
         </v-col>
       </v-row>
@@ -149,7 +149,7 @@ export default {
           Number(this.productDetails.price);
         this.cart.push(this.productDetails);
       }
-      localStorage.setItem("cartData", JSON.stringify(this.cart));
+      sessionStorage.setItem("cartData", JSON.stringify(this.cart));
       console.log(this.cart);
       this.$store.commit("totalItemsInCart", this.cart.length);
     },
@@ -158,7 +158,7 @@ export default {
 
       if (index == -1) {
         this.wishList.push(this.productDetails);
-        localStorage.setItem("wishListData", JSON.stringify(this.wishList));
+        sessionStorage.setItem("wishListData", JSON.stringify(this.wishList));
         this.$store.commit("totalItemsInWishList", this.wishList.length);
       }
     },
@@ -167,12 +167,12 @@ export default {
   mounted() {
     this.getProduct();
 
-    if (localStorage.getItem("cartData")) {
-      this.cart = JSON.parse(localStorage.getItem("cartData"));
+    if (sessionStorage.getItem("cartData")) {
+      this.cart = JSON.parse(sessionStorage.getItem("cartData"));
     }
 
-    if (localStorage.getItem("wishListData")) {
-      this.wishList = JSON.parse(localStorage.getItem("wishListData"));
+    if (sessionStorage.getItem("wishListData")) {
+      this.wishList = JSON.parse(sessionStorage.getItem("wishListData"));
     }
   },
 };

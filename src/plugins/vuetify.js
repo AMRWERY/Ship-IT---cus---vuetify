@@ -23,7 +23,4 @@ export default createVuetify({
       },
     },
   },
-  theme: {
-    defaultTheme: "dark",
-  },
 });

@@ -86,7 +86,8 @@
             class="text-white mt-5"
             color="deep-orange-lighten-2"
             flat=""
-            to="/checkout"
+            to="/order-tracking"
+            @click="checkout"
             >Proceed To Pay</v-btn
           >
         </div>
@@ -96,6 +97,9 @@
 </template>
 
 <script>
+import { collection, addDoc, query, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
+
 export default {
   name: "Cart",
 
@@ -107,6 +111,9 @@ export default {
       img: "",
       price: 0,
       cartQty: 0,
+      total: 0,
+      orderStatus: [],
+      totalAmount: 0,
     };
   },
 
@@ -140,15 +147,43 @@ export default {
       const index = this.cart.findIndex((item) => item.id === itemId);
       if (index !== -1) {
         this.cart.splice(index, 1);
-        localStorage.setItem("cartData", JSON.stringify(this.cart));
+        sessionStorage.setItem("cartData", JSON.stringify(this.cart));
       }
+    },
+
+    async checkout() {
+      this.orderStatus[0]["isActive"] = true;
+
+      const colRef = collection(db, "orders");
+      const dataObj = {
+        cartItems: this.cart,
+        status: this.orderStatus,
+        total: this.totalAmount,
+        userId: JSON.parse(sessionStorage.getItem("userCredential"))?.user?.uid,
+        orderDate: new Date(),
+      };
+      const docRef = await addDoc(colRef, dataObj);
+      console.log("Document was created with ID:", docRef.id);
+    },
+
+    async getStatus() {
+      const querySnap = await getDocs(query(collection(db, "orderTracking")));
+
+      querySnap.forEach((doc) => {
+        let pro = {
+          id: doc.id,
+          ...doc.data(doc.id),
+        };
+        this.orderStatus.push(pro);
+      });
     },
   },
 
   mounted() {
-    if (localStorage.getItem("cartData")) {
-      this.cart = JSON.parse(localStorage.getItem("cartData"));
+    if (sessionStorage.getItem("cartData")) {
+      this.cart = JSON.parse(sessionStorage.getItem("cartData"));
     }
+    this.getStatus();
   },
 };
 </script>
