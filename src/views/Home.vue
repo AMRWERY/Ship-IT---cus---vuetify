@@ -1,10 +1,8 @@
 <template>
-  <v-app>
     <Carousel />
     <Banners />
     <Lorem />
     <TodayDeals />
-  </v-app>
 </template>
 
 <script>

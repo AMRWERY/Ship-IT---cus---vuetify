@@ -50,7 +50,7 @@
         </v-table>
       </v-col>
       <v-col :cols="12" md="3" sm="12" style="background-color: #bbd6b8">
-        <p class="headline text-center">Order Summary</p>
+        <p class="headline text-center text-red-darken-2">Order Summary</p>
         <p class="overline">
           Shipping and additional costs are calculated based on values you have
           entered.
@@ -60,21 +60,21 @@
             <tbody>
               <tr>
                 <td>Order Subtotal</td>
-                <td class="text-right" style="width: 50px">
+                <td class="text-right text-indigo-lighten-2" style="width: 50px">
                   ${{ totalAmount.total }}
                 </td>
               </tr>
               <tr>
                 <td>Shipping Charges</td>
-                <td class="text-right" style="width: 50px">$10.00</td>
+                <td class="text-right text-indigo-lighten-2" style="width: 50px">$10.00</td>
               </tr>
               <tr>
                 <td>Tax</td>
-                <td class="text-right" style="width: 50px">$5.00</td>
+                <td class="text-right text-indigo-lighten-2" style="width: 50px">$5.00</td>
               </tr>
               <tr>
                 <td>Total Items</td>
-                <td class="text-right" style="width: 50px">
+                <td class="text-right text-indigo-lighten-2" style="width: 50px">
                   <b>{{ totalItems }}</b>
                 </td>
               </tr>
@@ -86,9 +86,9 @@
             class="text-white mt-5"
             color="deep-orange-lighten-2"
             flat=""
-            to="/order-tracking"
+            to="/checkout"
             @click="checkout"
-            >Proceed To Pay</v-btn
+            >Checkout</v-btn
           >
         </div>
       </v-col>
@@ -121,7 +121,6 @@ export default {
     totalAmount() {
       let total = 0;
       let amounts = {};
-
       this.cart.forEach((item) => {
         if (!amounts[item.category]) {
           amounts[item.category] = 0;
@@ -129,9 +128,7 @@ export default {
         amounts[item.category] += item.price * item.cartQty;
         total += item.price * item.cartQty;
       });
-
       total = total.toFixed(2);
-
       return {
         total,
         amounts,

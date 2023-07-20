@@ -13,8 +13,8 @@
       :key="pro"
     >
       <v-hover v-slot="{ isHovering, props }">
-        <v-card class="mx-auto" max-width="600" color="teal-lighten-5" v-bind="props">
-          <v-img :aspect-ratio="16 / 9" cover height="200px" :src="pro.img">
+        <v-card class="mx-auto" max-width="600" height="100%" color="teal-lighten-5" v-bind="props">
+          <v-img cover height="300px" :src="pro.img">
             <v-expand-transition>
               <div
                 v-if="isHovering"
@@ -22,7 +22,7 @@
                 style="height: 100%"
               >
                 <v-btn
-                  variant="outlined"
+                  variant="outlined" class="text-capitalize"
                   :to="{ name: 'Products', params: { id: pro.id } }"
                   >Check</v-btn
                 >
@@ -30,19 +30,19 @@
             </v-expand-transition>
           </v-img>
 
-          <v-card-text class="pt-6">
+          <v-card-text class="pt-6 bg-blue-grey-lighten-5">
             <div class="font-weight-light text-grey text-h6 mb-2">
-              <v-chip variant="elevated" color="primary">
+              <v-chip variant="elevated" class="text-capitalize" color="deep-orange-lighten-4">
                 {{ pro.title }}
               </v-chip>
             </div>
 
             <div class="font-weight-light text-h6 mb-2">${{ pro.price }}</div>
             <div class="font-weight-light text-h6 mb-2">
-              <strong>In Stock:</strong> {{ pro.qty }} Pieces
+              <strong class="text-green-lighten-2">In Stock:</strong> {{ pro.qty }} Pieces
             </div>
             <div class="font-weight-light text-h6 mb-2">
-              <strong>Category:</strong> {{ pro.category }}
+              <strong class="text-green-lighten-2">Category:</strong> {{ pro.category }}
             </div>
           </v-card-text>
         </v-card>

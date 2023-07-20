@@ -1,10 +1,8 @@
 <template>
   <div>
-    <v-toolbar color="indigo-lighten-2">
-      <v-toolbar-title
-        ><v-icon icon="mdi mdi-van-utility" start></v-icon>
-        Ship-IT</v-toolbar-title
-      >
+    <v-toolbar color="indigo-lighten-5">
+      <v-toolbar-title><v-avatar image="../assets/shopping-bags-svgrepo-com (1).svg"></v-avatar>
+        Ship-IT</v-toolbar-title>
       <v-spacer />
 
       <v-btn icon to="/profile" v-if="isAuthenticated">
@@ -21,28 +19,27 @@
         </v-badge>
       </v-btn>
 
-      <v-btn
-        icon="mdi mdi-logout"
-        to="/login"
-        @click="logOut"
-        v-if="isAuthenticated"
-      >
+      <v-btn icon to="/order-tracking" v-if="isAuthenticated">
+        <v-icon icon="mdi mdi-eight-track"></v-icon>
+      </v-btn>
+
+      <v-btn icon="mdi mdi-logout" to="/login" @click="logOut" v-if="isAuthenticated">
       </v-btn>
     </v-toolbar>
   </div>
 
   <div>
-    <v-toolbar v-if="isAuthenticated">
+    <v-toolbar v-if="isAuthenticated" color="indigo-lighten-5">
       <v-row align="center" justify="center">
         <v-col cols="12" class="py-2 d-flex align-center justify-center">
-          <v-btn-toggle v-model="text" rounded="0" group>
-            <v-btn value="left" to="/home">Home</v-btn>
+          <v-btn-toggle rounded="0" group>
+            <v-btn value="left" class="text-capitalize" flat to="/home">Home</v-btn>
 
-            <v-btn value="left" to="/shop">Shop</v-btn>
+            <v-btn value="left" class="text-capitalize" flat to="/shop">Shop</v-btn>
 
-            <v-btn value="right" to="product">Product</v-btn>
+            <v-btn value="right" class="text-capitalize" flat to="product">Product</v-btn>
 
-            <v-btn value="justify" to="/blog">Blog</v-btn>
+            <v-btn value="justify" class="text-capitalize" flat to="/blog">Blog</v-btn>
           </v-btn-toggle>
         </v-col>
       </v-row>

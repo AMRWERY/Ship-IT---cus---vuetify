@@ -2,49 +2,31 @@
   <v-container>
     <v-row>
       <v-col xs="12">
-        <h2 class="text-red">Sign Up</h2>
+        <h2 class="text-red text-center">Sign up new account</h2>
       </v-col>
     </v-row>
     <v-row align="center" justify="center">
-      <v-col
-        xs="12"
-        sm="10"
-        md="8"
-        offset-sm="1"
-        offset-md="2"
-        class="flex-column justify-center align-center"
-      >
-        <v-card color="teal-lighten-5">
+      <v-col xs="12" sm="10" md="8" offset-sm="1" offset-md="2" class="flex-column">
+        <v-card max-width="600" class="justify-center align-center">
           <form @submit.prevent="signUp">
             <v-col>
-              <v-text-field
-                label="Email"
-                type="email"
-                required
-                v-model.trim="email"
-              ></v-text-field>
+              <v-text-field label="Email" type="email" required variant="outlined" v-model.trim="email"></v-text-field>
             </v-col>
             <v-col>
-              <v-text-field
-                label="Password"
-                type="password"
-                required
-                v-model.trim="password"
-              ></v-text-field>
+              <v-text-field label="Password" type="password" required variant="outlined"
+                v-model.trim="password"></v-text-field>
             </v-col>
             <v-col>
-              <v-btn
-                color="indigo-lighten-1"
-                type="submit"
-                :disabled="!formIsValid"
-                >Register</v-btn
-              >
+              <v-btn color="indigo-lighten-1" block type="submit" class="text-capitalize float-right mb-4"
+                :disabled="!formIsValid">Register</v-btn>
             </v-col>
           </form>
+          <v-card-text>
+            <h4 class="text-center text-subtitle-1 mt-6">
+              Already have account? <router-link class="text-decoration-none" to="/login">Sign In</router-link>
+            </h4>
+          </v-card-text>
         </v-card>
-        <h4 class="text-center text-subtitle-1 mt-6">
-          Already have account? <router-link to="/login">Sign In</router-link>
-        </h4>
       </v-col>
       <progress-circular v-if="loading" />
     </v-row>

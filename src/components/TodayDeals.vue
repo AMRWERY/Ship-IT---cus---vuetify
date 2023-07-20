@@ -29,7 +29,7 @@
                   <div>Baggit, Zara, Fossil</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
+                  <v-btn to="/shop" class="ma-2 text-capitalize" outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>
@@ -58,7 +58,7 @@
                   <div>Zara, Selected, Celio</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
+                  <v-btn to="/shop" class="ma-2 text-capitalize" outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>
@@ -87,7 +87,7 @@
                   <div>Jack & Jones, Levis</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
+                  <v-btn to="/shop" class="ma-2 text-capitalize" outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>
@@ -116,7 +116,7 @@
                   <div>Nike, Adidas, Puma</div>
                 </v-card-text>
                 <div class="text-center">
-                  <v-btn to="/shop" class="ma-2"  outlined>Explore</v-btn>
+                  <v-btn to="/shop" class="ma-2 text-capitalize" outlined>Explore</v-btn>
                 </div>
               </v-card>
             </v-hover>

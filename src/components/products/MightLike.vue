@@ -1,8 +1,8 @@
 <template>
-  <p class="subtitle-1 font-weight-light pt-3 text-center">
-    YOU MIGHT ALSO LIKE
+  <p class="subtitle-1 font-weight-light pt-3 text-center text-capitalize ma-4">
+    You might also like
   </p>
-  <v-divider />
+  <v-divider class="mb-3" />
   <v-row class="row text-center">
     <v-col cols="12">
       <v-row>

@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h4 class="text-h4">Make a Payment</h4>
+        <h4 class="text-h4 text-center">Make a Payment</h4>
       </v-col>
     </v-row>
     <v-row>
@@ -13,8 +13,8 @@
             bg-color="light-green-lighten-1"
             align-tabs="center"
           >
-            <v-tab value="one">Credit Card</v-tab>
-            <v-tab value="two">Paypal</v-tab>
+            <v-tab value="one" class="text-capitalize">Credit Card</v-tab>
+            <v-tab value="two" class="text-capitalize">Paypal</v-tab>
           </v-tabs>
 
           <v-card-text>

@@ -12,7 +12,7 @@
           >
             <h1 class="text-center text-white">Top Picks</h1>
             <div class="text-center white-text">
-              <v-btn to="/shop" class="white-text" color="indigo-lighten-4">Shop Now</v-btn>
+              <v-btn to="/shop" class="white-text text-capitalize" color="indigo-lighten-4">Shop Now</v-btn>
             </div>
           </v-img>
         </v-card>
@@ -28,7 +28,7 @@
           >
             <h1 class="text-center text-white">New Arrivals</h1>
             <div class="text-center white-text">
-              <v-btn to="/shop" class="white-text" color="indigo-lighten-4">Shop Now</v-btn>
+              <v-btn to="/shop" class="white-text text-capitalize" color="indigo-lighten-4">Shop Now</v-btn>
             </div>
           </v-img>
         </v-card>

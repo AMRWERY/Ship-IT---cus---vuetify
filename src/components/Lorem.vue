@@ -11,9 +11,9 @@
         >
           <h1 class="text-center font-size">Lorem & Ipsum</h1>
           <div class="text-center mt-2">
-            <v-btn class="white-text caption" to="/shop" variant="plain"
-              >SHOP NOW
-              <v-icon class="white-text caption">mdi-arrow-right</v-icon></v-btn
+            <v-btn class="white-text text-capitalize" to="/shop" variant="plain"
+              >shop now
+              <v-icon class="white-text">mdi-arrow-right</v-icon></v-btn
             >
           </div>
         </v-img>
@@ -30,9 +30,9 @@
         >
           <h1 class="text-center font-size">Lorem & Ipsum</h1>
           <div class="text-center mt-2">
-            <v-btn class="white-text caption" to="/shop" variant="plain"
-              >SHOP NOW
-              <v-icon class="white-text caption">mdi-arrow-right</v-icon></v-btn
+            <v-btn class="white-text text-capitalize" to="/shop" variant="plain"
+              >shop now
+              <v-icon class="white-text">mdi-arrow-right</v-icon></v-btn
             >
           </div>
         </v-img>
@@ -49,9 +49,9 @@
         >
           <h1 class="text-center font-size">Lorem & Ipsum</h1>
           <div class="text-center mt-2">
-            <v-btn class="white-text caption" to="/shop" variant="plain"
-              >SHOP NOW
-              <v-icon class="white-text caption">mdi-arrow-right</v-icon></v-btn
+            <v-btn class="white-text text-capitalize" to="/shop" variant="plain"
+              >shop now
+              <v-icon class="white-text">mdi-arrow-right</v-icon></v-btn
             >
           </div>
         </v-img>

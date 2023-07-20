@@ -8,7 +8,7 @@
       </v-col>
 
       <v-col cols="12" sm="12" md="10" lg="4">
-        <v-card class="mx-auto" max-width="368">
+        <v-card class="mx-auto bg-light-green-lighten-5" max-width="368">
           <v-card-text class="py-0">
             <v-row align="center" no-gutters>
               <v-col class="text-h4" cols="6">Profile</v-col>
@@ -17,6 +17,7 @@
                 <v-avatar
                   image="https://justfields.com/storage/projects/7M5rV059/photo_2023-05-14_16-32-00.jpg"
                   size="80"
+                  class="mt-2"
                 ></v-avatar>
               </v-col>
             </v-row>
@@ -32,22 +33,19 @@
                 size="small"
                 color="surface-variant"
                 variant="text"
-                icon="mdi-heart"
-              ></v-btn>
+                icon="mdi-heart"></v-btn>
 
               <v-btn
                 size="small"
                 color="surface-variant"
                 variant="text"
-                icon="mdi-bookmark"
-              ></v-btn>
+                icon="mdi-bookmark"></v-btn>
 
               <v-btn
                 size="small"
                 color="surface-variant"
                 variant="text"
-                icon="mdi-share-variant"
-              ></v-btn>
+                icon="mdi-share-variant"></v-btn>
             </v-col>
           </v-row>
 
@@ -74,7 +72,7 @@
           </v-expand-transition>
           <v-divider />
           <v-card-actions>
-            <v-btn @click="expand = !expand">
+            <v-btn @click="expand = !expand" class="text-capitalize" variant="text">
               {{ !expand ? "Full Report" : "Hide Report" }}
             </v-btn>
           </v-card-actions>

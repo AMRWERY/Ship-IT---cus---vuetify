@@ -1,6 +1,8 @@
 <template>
+  <v-app>
   <Toolbar />
   <router-view />
+</v-app>
 </template>
 
 <script>

@@ -1,49 +1,40 @@
 <template>
   <v-container>
-    <div>
-      <v-row>
-        <v-col cols="6" xs="12" sm="12" md="6">
-          <h3 class="mt-3">Track Your Order</h3>
-        </v-col>
-        <v-col cols="6" xs="12" sm="12" md="6">
-          <v-chip
-            class="mt-3 float-right"
-            variant="outlined"
-            color="cyan"
-            v-for="order in userOrders"
-            :key="order"
-            @click="showDetails(order)"
-          >
-            <div>Order No: {{ order.id }}</div>
-            <!-- <div>{{ new Date(order.orderDate).toLocaleString() }}</div> -->
-          </v-chip>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col
-          class="mt-5"
-          v-for="status in orderDetails?.status"
-          :key="status"
-        >
-          <v-timeline direction="horizontal">
-            <v-timeline-item dot-color="pink"> </v-timeline-item>
-            <div>
-              <div class="text-h6 text-purple-lighten-2">
-                {{ status.name }}
-              </div>
-              <p>
-                status:
-                <span class="text-light-green-lighten-1">{{
-                  status.isActive
-                }}</span>
-              </p>
+    <v-row dense align="center" justify="center">
+      <v-col cols="12" v-for="order in userOrders" :key="order">
+        <v-card class="justify-center align-center pa-5 ma-auto mb-4" variant="outlined" max-width="800">
+          <v-card-subtitle>
+            <div class="my-4 text-center">
+              <h4>Order <span class="text-primary font-weight-bold">#{{ order.id }}</span></h4>
             </div>
+          </v-card-subtitle>
+          <v-card-title>
+            <div>
+              <v-list>
+                <v-list-item :prepend-avatar="order?.cartItems[0]?.img" :title="order?.cartItems[0]?.title"
+                  :subtitle="'$' + order?.cartItems[0]?.price">
+                </v-list-item>
+              </v-list>
+
+            </div>
+          </v-card-title>
+          <v-timeline side="end" justify="center" align="center" direction="horizontal" truncate-line="both">
+            <v-timeline-item size="small" v-for="status in order?.status" :key="status"
+              :dot-color="status.isActive ? 'pink' : 'blue'">
+              <div class="d-flex">
+                <div>
+                  <strong>{{ status?.name }}</strong>
+                </div>
+              </div>
+            </v-timeline-item>
           </v-timeline>
-        </v-col>
-      </v-row>
-    </div>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
+
+
 
 <script>
 import { getDocs, query, collection } from "firebase/firestore";

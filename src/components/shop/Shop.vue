@@ -1,8 +1,8 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col md="3" sm="3" xs="12">
-        <v-card variant="outlined">
+        <v-card flat>
           <v-card-title class="pb-0">Filters</v-card-title>
           <v-divider />
           <v-list style="cursor: pointer">

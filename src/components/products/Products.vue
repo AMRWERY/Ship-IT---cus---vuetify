@@ -8,28 +8,19 @@
           </v-card>
         </v-col>
         <v-col cols="12" lg="7" md="6" sm="12" xs="12">
-          <v-breadcrumbs
-            :items="['Home', 'Clothing', 'T-Shirts']"
-          ></v-breadcrumbs>
+          <v-breadcrumbs :items="['Home', 'Clothing', 'T-Shirts']"></v-breadcrumbs>
           <div class="pl-6">
             <p class="display-1 mb-0 text-h5">{{ productDetails?.title }}</p>
             <v-card-actions class="pa-0">
               <p class="headline font-weight-light pt-3">
                 ${{ productDetails?.price }}
-                <del style="" class="subtitle-1 font-weight-thin"
-                  ><strong>${{ productDetails?.originalPrice }}</strong></del
-                >
+                <del style="" class="subtitle-1 font-weight-thin"><strong>${{ productDetails?.originalPrice
+                }}</strong></del>
               </p>
               <v-spacer />
-              <v-rating
-                v-model="rating"
-                background-color="warning lighten-3"
-                color="warning"
-                dense
-              ></v-rating>
+              <v-rating v-model="rating" background-color="warning lighten-3" color="warning" dense></v-rating>
               <span class="body-2 font-weight-thin">
-                {{ productDetails?.rate }} REVIEWS</span
-              >
+                {{ productDetails?.rate }} REVIEWS</span>
             </v-card-actions>
             <p class="subtitle-1 font-italic">
               {{ productDetails?.dec }}
@@ -49,19 +40,13 @@
               <v-radio label="XL" value="5"></v-radio>
             </v-radio-group>
             <p class="text-h5 mt-5">Items</p>
-            <v-text-field
-              v-model="chosenItems"
-              type="number"
-              variant="outlined"
-              style="width: 100px"
-              dense
-            ></v-text-field>
-            <v-btn color="purple-lighten-3" @click="addToCart"
-              ><v-icon>mdi mdi-cart-outline</v-icon>Add to Cart</v-btn
-            >
-            <v-btn color="orange-lighten-3" class="ml-4" @click="addToWishList"
-              ><v-icon>"mdi mdi-heart-outline</v-icon>Add to Wishlist</v-btn
-            >
+            <v-text-field v-model="chosenItems" type="number" variant="outlined" style="width: 100px"
+              dense></v-text-field>
+            <v-btn color="purple-lighten-3" class="text-capitalize" @click="addToCart"><v-icon>mdi
+                mdi-cart-outline</v-icon>Add to Cart</v-btn>
+            <v-btn color="orange-lighten-3" class="ml-4 text-capitalize" @click="addToWishList"><v-icon>"mdi
+                mdi-heart-outline</v-icon>Add
+              to Wishlist</v-btn>
 
           </div>
         </v-col>
@@ -69,9 +54,9 @@
       <v-row>
         <v-col xs="12" sm="12" md="12">
           <v-tabs v-model="tab">
-            <v-tab value="one">Description</v-tab>
-            <v-tab value="two">Materials</v-tab>
-            <v-tab value="three">Reviews</v-tab>
+            <v-tab value="one" class="text-capitalize">Description</v-tab>
+            <v-tab value="two" class="text-capitalize">Materials</v-tab>
+            <v-tab value="three" class="text-capitalize">Reviews</v-tab>
           </v-tabs>
 
           <v-card-text>
