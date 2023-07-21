@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-16">
     <v-row>
       <v-col xs="12">
         <h2 class="text-red text-center">Sign up new account</h2>

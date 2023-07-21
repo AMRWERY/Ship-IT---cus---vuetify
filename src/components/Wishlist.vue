@@ -18,17 +18,16 @@
           <tbody>
             <tr v-for="item in wishList" :key="item">
               <td>
-                <v-list-item
-                  :prepend-avatar="item.img"
-                  :title="item.title"
-                  :subtitle="item.category"
-                ></v-list-item>
+                <v-list-item :prepend-avatar="item.img" :title="item.title" :subtitle="item.category"></v-list-item>
               </td>
               <td>${{ item.price }}</td>
               <td>
-                <v-btn color="red" flat @click="addToCart(item)"
-                  ><v-icon icon="mdi mdi-plus"></v-icon>Add to Cart</v-btn
-                >
+                <v-tooltip text="Add to Cart" location="top">
+                  <template v-slot:activator="{ props }">
+                    <v-btn color="red" icon="mdi mdi-plus" density="comfortable" v-bind="props"
+                      @click="addToCart(item)" />
+                  </template>
+                </v-tooltip>
               </td>
             </tr>
           </tbody>
@@ -56,21 +55,26 @@ export default {
 
   methods: {
     addToCart(product) {
-      let index = this.cart.indexOf(product);
-
-      if (index != -1) {
-        this.cart[index]["totalPrice"] =
-          Number(this.cart[index].cartQty) * Number(this.cart[index].price);
-        this.cart[index].cartQty =
-          Number(this.chosenItems) + Number(this.cart[index].cartQty);
-        Number(this.cart[index]["cart"]) * Number(this.cart[index]["price"]);
-      } else {
-        product["cartQty"] = Number(this.chosenItems);
-        product["totalPrice"] = Number(product.cartQty) * Number(product.price);
-        this.cart.push(product);
+      for (const item of this.wishList) {
+        let index = this.cart.indexOf(item);
+        if (index != -1) {
+          this.cart[index]["totalPrice"] =
+            Number(this.cart[index].cartQty) * Number(this.cart[index].price);
+          this.cart[index].cartQty =
+            Number(this.chosenItems) + Number(this.cart[index].cartQty);
+          Number(this.cart[index]["cart"]) * Number(this.cart[index]["price"]);
+        } else {
+          item["cartQty"] = Number(this.chosenItems);
+          item["totalPrice"] = Number(item.cartQty) * Number(item.price);
+          this.cart.push(item);
+        }
+        const wishlistIndex = this.wishList.indexOf(item);
+        if (wishlistIndex !== -1) {
+          this.wishList.splice(wishlistIndex, 1);
+        }
       }
       sessionStorage.setItem("cartData", JSON.stringify(this.cart));
-      console.log(this.cart);
+      sessionStorage.setItem("wishListData", JSON.stringify(this.wishList));
       this.$store.commit("totalItemsInCart", this.cart.length);
     },
   },

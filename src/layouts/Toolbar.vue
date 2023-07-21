@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="indigo-lighten-5">
+    <v-toolbar color="indigo-lighten-5" v-if="isAuthenticated">
       <v-toolbar-title><v-avatar image="../assets/shopping-bags-svgrepo-com (1).svg"></v-avatar>
         Ship-IT</v-toolbar-title>
       <v-spacer />
@@ -72,6 +72,12 @@ export default {
     totalItemsInWishList() {
       return this.$store.getters.totalItemsInWishList;
     },
+  },
+
+  watch: {
+    totalItemsInWishList(oldVal, newVal) {
+      this.totalItems = newVal
+    }
   },
 
   mounted() {

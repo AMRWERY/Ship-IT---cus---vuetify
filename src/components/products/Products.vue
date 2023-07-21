@@ -42,12 +42,28 @@
             <p class="text-h5 mt-5">Items</p>
             <v-text-field v-model="chosenItems" type="number" variant="outlined" style="width: 100px"
               dense></v-text-field>
-            <v-btn color="purple-lighten-3" class="text-capitalize" @click="addToCart"><v-icon>mdi
+            <v-btn color="purple-lighten-3" class="text-capitalize" @click="addToCartAndShowSnackbar"><v-icon>mdi
                 mdi-cart-outline</v-icon>Add to Cart</v-btn>
-            <v-btn color="orange-lighten-3" class="ml-4 text-capitalize" @click="addToWishList"><v-icon>"mdi
+            <v-snackbar v-model="snackbar" :timeout="timeout">
+              {{ text }}
+              <template v-slot:actions>
+                <v-btn color="blue" variant="text" @click="snackbar = false">
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+            <v-btn color="orange-lighten-3" class="ml-4 text-capitalize"
+              @click="addToWishListAndShowSnackbar"><v-icon>"mdi
                 mdi-heart-outline</v-icon>Add
               to Wishlist</v-btn>
-
+            <v-snackbar v-model="snackbar" :timeout="timeout">
+              {{ text }}
+              <template v-slot:actions>
+                <v-btn color="blue" variant="text" @click="snackbar = false">
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
           </div>
         </v-col>
       </v-row>
@@ -106,6 +122,9 @@ export default {
       totalItems: null,
       chosenItems: 1,
       wishList: [],
+      snackbar: false,
+      text: 'item added',
+      timeout: 2000,
     };
   },
 
@@ -146,6 +165,14 @@ export default {
         sessionStorage.setItem("wishListData", JSON.stringify(this.wishList));
         this.$store.commit("totalItemsInWishList", this.wishList.length);
       }
+    },
+    addToCartAndShowSnackbar() {
+      this.addToCart();
+      this.snackbar = true;
+    },
+    addToWishListAndShowSnackbar() {
+      this.addToWishList();
+      this.snackbar = true;
     },
   },
 
